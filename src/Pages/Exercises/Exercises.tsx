@@ -197,7 +197,7 @@ const Exercises = () => {
               volume={1}
               width={1280}
               height={640}
-              controls={true}
+              controls
               url={`https://www.youtube.com/watch?v=${video.contents[0].video.videoId}`}
             />
           </div>
