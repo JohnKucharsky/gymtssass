@@ -187,10 +187,7 @@ const Exercises = () => {
           size="large"
         />
       </div>
-      <Dialog
-        sx={{ width: "800px", height: "100%" }}
-        open={open}
-        onClose={() => setOpen((prev) => !prev)}>
+      <Dialog open={open} onClose={() => setOpen((prev) => !prev)}>
         <ReactPlayer
           url={`https://www.youtube.com/watch?v=${video.content[0].video.videoId}`}
         />
