@@ -1,0 +1,45 @@
+@use "../../breadpoints.scss" as *;
+.home {
+  display: flex;
+  justify-content: space-between;
+  &__left {
+    position: relative;
+    &--container {
+      padding: 5rem 2rem 0 5rem;
+      @include md {
+        padding: 2rem;
+      }
+    }
+    h3 {
+      font-size: 1.5rem;
+      margin-top: 5rem;
+      color: #dc2626;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-top: 2rem;
+    }
+    p {
+      font-size: 1.3rem;
+      margin: 2rem 0;
+    }
+    h2 {
+      font-size: 12.5rem;
+      position: absolute;
+      margin-top: 2rem;
+      color: #fee2e2;
+      @include md {
+        display: none;
+      }
+    }
+  }
+  &__image {
+    width: 700px;
+    height: auto;
+    z-index: 10;
+
+    @include xl {
+      display: none;
+    }
+  }
+}

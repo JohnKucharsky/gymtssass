@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  padding: 2rem;
+  align-items: center;
+  gap: 5rem;
+  &__links {
+    font-size: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    a.active {
+      border-bottom: 3px solid #ef4444;
+    }
+  }
+}
