@@ -187,10 +187,21 @@ const Exercises = () => {
           size="large"
         />
       </div>
-      <Dialog open={open} onClose={() => setOpen((prev) => !prev)}>
-        <ReactPlayer
-          url={`https://www.youtube.com/watch?v=${video.content[0].video.videoId}`}
-        />
+      <Dialog
+        sx={{ ".MuiPaper-root": { maxWidth: 1380 } }}
+        open={open}
+        onClose={() => setOpen((prev) => !prev)}>
+        {video.contents.length && (
+          <div style={{ padding: 10 }}>
+            <ReactPlayer
+              volume={1}
+              width={1280}
+              height={640}
+              controls={true}
+              url={`https://www.youtube.com/watch?v=${video.contents[0].video.videoId}`}
+            />
+          </div>
+        )}
       </Dialog>
       <div className="exercise__bottom">
         {currentExercises.map((v: any) => (
