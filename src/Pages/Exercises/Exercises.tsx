@@ -191,7 +191,7 @@ const Exercises = () => {
         sx={{ ".MuiPaper-root": { maxWidth: 1380 } }}
         open={open}
         onClose={() => setOpen((prev) => !prev)}>
-        {video.contents.length && (
+        {video?.contents?.length && (
           <div style={{ padding: 10 }}>
             <ReactPlayer
               volume={1}
