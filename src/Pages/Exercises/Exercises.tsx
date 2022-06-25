@@ -6,7 +6,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../Components/Header/Header";
 import {
   exerciseOptions,
@@ -16,29 +16,23 @@ import {
 import "@splidejs/react-splide/css";
 import gym from "../../assets/icons/gym.png";
 import "./exercises.scss";
+import ReactPlayer from "react-player";
 
-const Exercises = ({
-  setExercises,
-  bodyPart,
-  setBodyPart,
-  exercises,
-}: {
-  setExercises: React.Dispatch<React.SetStateAction<never[]>>;
-  bodyPart: string;
-  setBodyPart: React.Dispatch<React.SetStateAction<string>>;
-  exercises: never[];
-}) => {
+const Exercises = () => {
   const [search, setSearch] = useState("");
   const [bodyParts, setBodyParts] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(6);
   const [open, setOpen] = useState(false);
   const [exercise, setExercise] = useState("");
-  const [video, setVideo] = useState<any[]>([]);
+  const [video, setVideo] = useState<any>({});
+  const [exercises, setExercises] = useState([]);
+  const [bodyPart, setBodyPart] = useState("all");
+
+  // get exercises
   useEffect(() => {
     const fetchExercisesData = async () => {
       let exercisesData = [];
-
       if (bodyPart === "all") {
         exercisesData = await fetchData(
           "https://exercisedb.p.rapidapi.com/exercises",
@@ -57,6 +51,7 @@ const Exercises = ({
     fetchExercisesData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bodyPart]);
+  // end get exercises
 
   // Pagination
   const indexOfLastExercise = currentPage * exercisesPerPage;
@@ -69,7 +64,9 @@ const Exercises = ({
   const paginate = (event: any, value: any) => {
     setCurrentPage(value);
   };
+  // end pagination
 
+  // get body parts
   useEffect(() => {
     const fetchExercisesData = async () => {
       const bodyPartsData = await fetchData(
@@ -80,7 +77,22 @@ const Exercises = ({
     };
     fetchExercisesData();
   }, []);
+  // end body parts
 
+  // get youtube id
+  useEffect(() => {
+    const fetchVideos = async () => {
+      const exerciseVideosData = await fetchData(
+        `https://youtube-search-and-download.p.rapidapi.com/search?query=${exercise} exercise`,
+        youtubeOptions,
+      );
+      setVideo(exerciseVideosData);
+    };
+    fetchVideos();
+  }, [exercise]);
+  // end get youtube id
+
+  // search
   const handleSearch = async () => {
     if (search) {
       const exercisesData = await fetchData(
@@ -100,6 +112,7 @@ const Exercises = ({
       setExercises(searchedExercises);
     }
   };
+  // end search
 
   if (!currentExercises.length) return <LinearProgress />;
   return (
@@ -177,7 +190,11 @@ const Exercises = ({
       <Dialog
         sx={{ width: "800px", height: "100%" }}
         open={open}
-        onClose={() => setOpen((prev) => !prev)}></Dialog>
+        onClose={() => setOpen((prev) => !prev)}>
+        <ReactPlayer
+          url={`https://www.youtube.com/watch?v=${video.content[0].video.videoId}`}
+        />
+      </Dialog>
       <div className="exercise__bottom">
         {currentExercises.map((v: any) => (
           <div

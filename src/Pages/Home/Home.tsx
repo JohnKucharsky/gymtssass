@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import Header from "../../Components/Header/Header";
 import hero from "../../assets/images/banner.png";
 import "./home.scss";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="home">
@@ -13,18 +14,23 @@ const Home = () => {
             Sweat, Smile <br /> And Repeat
           </h1>
           <p>Check out the most effective exercises personalized to you</p>
-          <Button
-            sx={{
-              backgroundColor: "#dc2626",
-              fontSize: "1.1rem",
-              padding: "0.5rem 1.5rem",
-              "&:hover": {
-                backgroundColor: "#b91c1c",
-              },
-            }}
-            variant="contained">
-            Explore Exercises
-          </Button>
+          <Link
+            style={{ textDecoration: "none", color: "black" }}
+            to="/exercises">
+            <Button
+              sx={{
+                backgroundColor: "#dc2626",
+                fontSize: "1.1rem",
+                padding: "0.5rem 1.5rem",
+                "&:hover": {
+                  backgroundColor: "#b91c1c",
+                },
+              }}
+              variant="contained">
+              Exercises
+            </Button>
+          </Link>
+
           <h2>Exersize</h2>
         </div>
       </div>
