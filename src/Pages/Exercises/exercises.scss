@@ -1,22 +1,35 @@
+@use "../../breadpoints.scss" as *;
 .exercises {
   &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @include md {
+      flex-direction: column;
+    }
     &--search {
+      gap: 1rem;
+      display: flex;
     }
   }
-}
-.exercise {
   &__middle {
-    max-width: 800px;
+    max-width: 840px;
     margin: 2rem auto;
+    @include xl {
+      max-width: 672px;
+    }
+    @include md {
+      max-width: 504px;
+    }
+    @include sm {
+      max-width: 336px;
+    }
     .splide__arrow {
       background-color: #ef4444;
     }
 
     .splide__pagination {
-      top: 5rem;
+      top: 6rem;
       .is-active {
         background-color: #ef4444;
       }
@@ -24,11 +37,13 @@
     &--item {
       cursor: pointer;
       width: 10rem;
-      height: 5rem;
+      height: 6rem;
       display: flex;
       align-items: center;
       flex-direction: column;
       justify-content: space-around;
+      background-color: #fff;
+      padding: 1rem 0;
       img {
         width: 3rem;
         height: 3rem;

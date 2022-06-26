@@ -147,28 +147,31 @@ const Exercises = () => {
           </Button>
         </div>
       </div>
-      <div className="exercise__middle">
+      <div className="exercises__middle">
         <Splide
           options={{
             perPage: 5,
             type: "loop",
             breakpoints: {
-              1000: {
+              1100: {
+                perPage: 4,
+              },
+              700: {
                 perPage: 3,
               },
-              640: {
+              400: {
                 perPage: 2,
               },
             },
             classes: {
-              arrows: "exercise__middle--arrows",
+              arrows: "exercises__middle--arrows",
             },
           }}>
           {bodyParts.map((v) => (
             <SplideSlide key={v}>
               <div
                 onClick={() => setBodyPart(v)}
-                className="exercise__middle--item">
+                className="exercises__middle--item">
                 <img src={gym} alt="" />
                 <p>{v}</p>
               </div>
@@ -176,7 +179,7 @@ const Exercises = () => {
           ))}
         </Splide>
       </div>
-      <div className="exercise__pagination">
+      <div className="exercises__pagination">
         <Pagination
           color="standard"
           shape="rounded"
@@ -203,7 +206,7 @@ const Exercises = () => {
           </div>
         )}
       </Dialog>
-      <div className="exercise__bottom">
+      <div className="exercises__bottom">
         {currentExercises.map((v: any) => (
           <div
             onClick={() => {
@@ -211,8 +214,8 @@ const Exercises = () => {
               setExercise(v.name);
             }}
             key={v.id}
-            className="exercise__bottom--item">
-            <div className="exercise__bottom--tags">
+            className="exercises__bottom--item">
+            <div className="exercises__bottom--tags">
               <span>{v.bodyPart}</span>
               <span>{v.target}</span>
             </div>
